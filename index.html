@@ -35,7 +35,8 @@
     .topbar { background: var(--green); border-bottom: 3px solid var(--gold); }
     .topbar-inner {
       max-width: 960px; margin: 0 auto; padding: 11px 32px;
-      display: flex; align-items: center; justify-content: space-between;
+      display: grid; align-items: center;
+      grid-template-columns: 1fr 1fr;
     }
     .topbar-left { display: flex; align-items: center; gap: 12px; }
     .topbar-name {
@@ -56,9 +57,12 @@
 
     /* ── HERO ── */
     .hero {
-      max-width: 960px; margin: 0 auto; padding: 72px 32px 0;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
+      max-width: 960px; 
+      margin: 0 auto;
+      padding: 48px 32px 0;
+      display: flex;
+      justify-content: center;
+      text-align: center;
     }
 
     .eyebrow {
@@ -66,8 +70,12 @@
       letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--gold); margin-bottom: 20px;
       display: flex; align-items: center; gap: 10px;
+      justify-content: flex-end;
     }
     .eyebrow::after {
+      display: none
+    }
+    .eyebrow::before {
       content: ''; height: 1px; width: 40px;
       background: var(--gold); opacity: 0.45; display: block;
     }
@@ -92,39 +100,39 @@
     .partner-box {
       border: 1.5px solid var(--rule);
       border-radius: 6px;
-      padding: 36px 32px;
+      padding: 32px 40px;
       background: var(--paper);
       position: relative;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 28px;
+      gap: 40px;
     }
-    .partner-box::before {
-      content: '✦';
-      position: absolute; top: -10px; left: 50%;
-      transform: translateX(-50%);
-      background: var(--paper); padding: 0 8px;
-      color: var(--gold); font-size: 12px;
-    }
-    .partner-logos {
+
+    .logos {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 24px;
-      width: 100%;
+      flex-shrink: 0;
+      justify-self: start; 
     }
-    .usf-block { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-    .usf-text {
+
+    .usf-block {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .usf-shield-img {
+      width: 72px; height: auto;
+    }
+
+    .logos_divider {
       font-family: 'Playfair Display', serif;
-      font-size: 42px; font-weight: 900;
-      color: var(--green); letter-spacing: -0.02em; line-height: 1;
+      font-size: 22px; color: white; flex-shrink: 0;
     }
-    .partner-x {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px; color: var(--rule); flex-shrink: 0;
+
+    .ripple-block {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
     }
-    .ripple-block { display: flex; flex-direction: column; align-items: center; gap: 6px; }
     .ripple-logo-wrap { width: 130px; }
     .ripple-logo-wrap img { width: 100%; height: auto; }
 
@@ -233,7 +241,7 @@
     footer { background: var(--green); border-top: 3px solid var(--gold); }
     .footer-inner {
       max-width: 960px; margin: 0 auto; padding: 26px 32px;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: center;
       flex-wrap: wrap; gap: 10px;
     }
     .footer-l {
@@ -273,13 +281,19 @@
   <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="topbar-left">
-        <div class="topbar-name">
-          University of San Francisco
-          <span>Computer Science</span>
+      <div class="logos">
+        <div class = "usf-block">
+          <img class="usf-shield-img" src="university-of-san-francisco.jpg" alt="University of San Francisco" />
         </div>
+        <div class="logos_divider">|</div>
+         <div class="ripple-block">
+          <div class="ripple-logo-wrap">
+            <img src="full-ripple-logo.png" alt="Ripple" />
+          </div>
+         </div>
       </div>
-      <div style = "display: flex; align-items: center; gap: 24px;">
+
+      <div style = "display: flex; align-items: center; gap: 24px; justify-self: end;">
       <a href="https://ripplexusf.github.io/"
         target = "_self" rel="noopener noreferrer"
          style="font-family: 'IBM Plex Mono', monospace; font-size: 16px;
@@ -309,20 +323,6 @@
         <span class="green-line">Schedule</span>
       </h1>
       <p class="hero-sub">Two days. One ledger. Build something that matters.</p>
-    </div>
-
-    <div class="partner-box">
-      <div class="partner-logos">
-        <div class="usf-block">
-          <span class="usf-text">USF</span>
-        </div>
-        <div class="partner-x">×</div>
-        <div class="ripple-block">
-          <div class="ripple-logo-wrap">
-            <img src="ripple.svg" alt="Ripple" style="width:130px; height:auto;" />
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -395,7 +395,7 @@
         <div class="event-row">
           <div class="event-time">10:00 AM</div>
           <div class="event-body">
-            <div class="event-name">Morning Check-in · Progress Standups</div>
+            <div class="event-name">Morning Check-in · Progress Standups (Breakfast served)</div>
           </div>
         </div>
 
@@ -430,20 +430,27 @@
         </div>
 
         <div class="event-row">
-          <div class="event-time">4:00 PM</div>
+          <div class="event-time">3:30 PM</div>
           <div class="event-body">
-            <div class="event-name">Project Demos</div>
+            <div class="event-name">Project Demos start</div>
             <span class="event-pill pill-start">Submissions due</span>
           </div>
         </div>
 
         <div class="event-row">
-          <div class="event-time">4:30 PM</div>
+          <div class="event-time">4:15 PM</div>
           <div class="event-body">
-            <div class="event-name">Judging · Awards</div>
+            <div class="event-name">Special Guest Ryan Wiliams</div>
           </div>
         </div>
 
+        <div class="event-row">
+          <div class="event-time">4:45 PM</div>
+          <div class="event-body">
+            <div class="event-name">Judging · Awards </div>
+          </div>
+        </div>
+        
         <div class="event-row">
           <div class="event-time">5:00 PM</div>
           <div class="event-body">
@@ -459,8 +466,9 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <div class="footer-l"><strong>University of San Francisco</strong> · CS Dept · XRPL Hackathon</div>
-      <div class="footer-r">usfca.edu · xrpl.org</div>
+      <div class="footer-l">
+        <img src="test2.png" alt="USF Law" style="height: 48px; width: auto;" />
+      </div>
     </div>
   </footer>
 
